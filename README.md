@@ -31,9 +31,9 @@ La extracción se realizó cubriendo el rango histórico completo, desde el prim
 | status | categórico | Estado de la ficha en VocaDB (ej. Finished, Draft, Approved) |
 
 ## Estructura del repositorio
-data/raw/ -> dataset crudo, sin procesar
-notebooks/ -> notebooks de exploración y análisis
-src/ -> scripts reutilizables (extracción, limpieza, etc.)
+data/raw/ # dataset crudo, sin procesar
+notebooks/ # notebooks de exploración y análisis
+src/ # scripts reutilizables (extracción, limpieza, etc.)
 
 ## Cómo reproducir la extracción
 
@@ -46,8 +46,13 @@ python src/extraer_cvs_vocadb.py
 
 El script generará un archivo CSV en la raíz del proyecto; muévelo manualmente a `data/raw/` si es necesario.
 
+## Historial de cambios
+
+**Ajuste posterior a la estracción de datos** el script de extracción original incluía el parámetro `songTypes: "Original"` en las llamadas a la API, por lo que el primer dataset entregado contenía únicamente canciones de tipo Original, sin variabilidad en esa columna. Al iniciar la Práctica 2 se identificó esta limitante (útil para análisis futuros como comparaciones por tipo o pruebas ANOVA), por lo que se eliminó dicho filtro y se volvió a ejecutar la extracción con la misma metodología de muestreo. El dataset actualizado incluye 10 tipos distintos de canción (Original, Cover, Remix, Remaster, Instrumental, entre otros).
+
 ## Avances
 - [x] Práctica 1: Limpieza de Datos
+- [X] Práctica 2: Estadística descriptiva, diagrama de entidades y relaciones, métricas agrupadas por año
 
 ## Autor
 Christian Alejandro García Sánchez
