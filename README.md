@@ -31,9 +31,11 @@ La extracción se realizó cubriendo el rango histórico completo, desde el prim
 | status | categórico | Estado de la ficha en VocaDB (ej. Finished, Draft, Approved) |
 
 ## Estructura del repositorio
+```
 data/raw/      # dataset crudo, sin procesar
 Practica 1/    # script de extracción del dataset
 Practica 2/    # estadística descriptiva, diagrama de entidades, métricas agrupadas
+```
 
 ## Cómo reproducir la extracción
 
