@@ -21,7 +21,7 @@ for year in range(START_YEAR, END_YEAR + 1):
     count_params = {
         "afterDate": after_date,
         "beforeDate": before_date,
-        "songTypes": "Original",
+        #"songTypes": "Original",
         "getTotalCount": "true",
         "maxResults": 1
     }
@@ -46,7 +46,7 @@ for year in range(START_YEAR, END_YEAR + 1):
             "beforeDate": before_date,
             "sort": "PublishDate",
             "fields": "Tags",
-            "songTypes": "Original"
+            #"songTypes": "Original"
         }
         resp = requests.get(BASE_URL, params=params)
         data = resp.json()
