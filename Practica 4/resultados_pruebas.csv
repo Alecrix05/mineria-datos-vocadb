@@ -1,0 +1,14 @@
+﻿prueba,H0,estadistico,p_valor,decision
+Normalidad (D'Agostino) - duracion,La duracion sigue una distribucion normal,893.2227,1.0943456251803892e-194,Se rechaza H0
+Levene - duracion por tipo,Las varianzas de duracion son iguales entre tipos,40.6972,5.138382911049422e-26,Se rechaza H0
+ANOVA - duracion por tipo,La duracion media es igual en todos los tipos,8.6039,1.0728466830912873e-05,Se rechaza H0
+Kruskal-Wallis - duracion por tipo,La distribucion de duracion es igual en todos los tipos,14.7942,0.0020012168975787185,Se rechaza H0
+Mann-Whitney Original vs Cover (Bonferroni),Duracion igual entre Original y Cover,2981301.0,1.0,No se rechaza H0
+Mann-Whitney Original vs Remix (Bonferroni),Duracion igual entre Original y Remix,452397.5,0.021307500794114843,Se rechaza H0
+Mann-Whitney Original vs Otro (Bonferroni),Duracion igual entre Original y Otro,528242.0,0.6594344075720943,No se rechaza H0
+Mann-Whitney Cover vs Remix (Bonferroni),Duracion igual entre Cover y Remix,222467.5,0.002521311364486345,Se rechaza H0
+Mann-Whitney Cover vs Otro (Bonferroni),Duracion igual entre Cover y Otro,261790.0,0.20409229561195238,No se rechaza H0
+Mann-Whitney Remix vs Otro (Bonferroni),Duracion igual entre Remix y Otro,50619.5,1.0,No se rechaza H0
+Chi-cuadrada - tipo vs etapa,El tipo de cancion es independiente de la etapa,22.7474,0.0008856576515672372,Se rechaza H0
+Chi-cuadrada - favoritos vs etapa,Tener favoritos es independiente de la etapa,78.4458,9.240686549151335e-18,Se rechaza H0
+Kruskal-Wallis - ratingScore por etapa,El ratingScore se distribuye igual en las 3 etapas,67.7131,1.9782461165154074e-15,Se rechaza H0
