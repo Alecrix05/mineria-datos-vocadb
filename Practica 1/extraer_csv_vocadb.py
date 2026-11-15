@@ -2,6 +2,9 @@ import requests
 import pandas as pd
 import time
 import random
+from pathlib import Path
+
+random.seed(42)
 
 BASE_URL = "https://vocadb.net/api/songs"
 
@@ -21,7 +24,6 @@ for year in range(START_YEAR, END_YEAR + 1):
     count_params = {
         "afterDate": after_date,
         "beforeDate": before_date,
-        #"songTypes": "Original",
         "getTotalCount": "true",
         "maxResults": 1
     }
@@ -46,7 +48,6 @@ for year in range(START_YEAR, END_YEAR + 1):
             "beforeDate": before_date,
             "sort": "PublishDate",
             "fields": "Tags",
-            #"songTypes": "Original"
         }
         resp = requests.get(BASE_URL, params=params)
         data = resp.json()
@@ -76,5 +77,7 @@ for year in range(START_YEAR, END_YEAR + 1):
     print(f"Año {year}: {collected_this_year} canciones ({SAMPLES_PER_YEAR} puntos dispersos, {total_available} disponibles)")
 
 df = pd.DataFrame(all_songs)
-df.to_csv("vocadb_songs_disperso.csv", index=False, encoding="utf-8-sig")
-print(f"\nListo. {len(df)} filas guardadas en vocadb_songs_disperso.csv")
+RUTA_SALIDA = Path(__file__).resolve().parent.parent / "data" / "raw" / "vocadb_songs_disperso.csv"
+RUTA_SALIDA.parent.mkdir(parents=True, exist_ok=True)
+df.to_csv(RUTA_SALIDA, index=False, encoding="utf-8-sig")
+print(f"\nListo. {len(df)} filas guardadas en {RUTA_SALIDA}")
