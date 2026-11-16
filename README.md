@@ -32,29 +32,66 @@ La extracción se realizó cubriendo el rango histórico completo, desde el prim
 
 ## Estructura del repositorio
 ```
-data/raw/      # dataset crudo, sin procesar
-Practica 1/    # script de extracción del dataset
-Practica 2/    # estadística descriptiva, diagrama de entidades, métricas agrupadas
+data/raw/            # dataset crudo (extraído de la API)
+data/processed/      # dataset limpio (lo usan las prácticas 3 a 9)
+Practica 1/          # extracción y limpieza de datos
+Practica 2/          # estadística descriptiva, diagrama de entidades, métricas agrupadas
+Practica 3/          # visualización de datos
+Practica 4/          # pruebas estadísticas
+Practica 5/          # correlación y modelos lineales
+Practica 6/          # clasificación con KNN
+Practica 7/          # clustering con K-Means
+Practica 8/          # pronóstico con series de tiempo
+Practica 9/          # análisis de texto
+requirements.txt     # librerías necesarias
 ```
+Cada carpeta de práctica tiene su propio `README.md` con la metodología, los resultados y la interpretación.
 
-## Cómo reproducir la extracción
-
-Requiere Python con las librerías `requests` y `pandas`:
+## Cómo ejecutar
 
 ```powershell
-pip install requests pandas
-python src/extraer_cvs_vocadb.py
+pip install -r requirements.txt
+
+# 1. Limpieza (genera data/processed/vocadb_limpio.csv)
+python "Practica 1/limpieza_datos.py"
+
+# 2. Cada práctica (en cualquier orden después de la limpieza)
+python "Practica 2/estadistica_descriptiva.py"
+python "Practica 3/visualizacion.py"
+python "Practica 4/pruebas_estadisticas.py"
+python "Practica 5/modelos_lineales.py"
+python "Practica 6/clasificacion_knn.py"
+python "Practica 7/clustering_kmeans.py"
+python "Practica 8/pronostico.py"
+python "Practica 9/analisis_texto.py"
 ```
 
-El script generará un archivo CSV en la raíz del proyecto; muévelo manualmente a `data/raw/` si es necesario.
+La extracción (`Practica 1/extraer_csv_vocadb.py`) guarda directo en `data/raw/`. **Ojo:** al volver a ejecutarla se descarga una muestra nueva y se reemplaza el CSV actual, por lo que todos los resultados cambiarían. Solo es necesaria para reproducir la metodología.
 
 ## Historial de cambios
 
-**Ajuste posterior a la estracción de datos** el script de extracción original incluía el parámetro `songTypes: "Original"` en las llamadas a la API, por lo que el primer dataset entregado contenía únicamente canciones de tipo Original, sin variabilidad en esa columna. Al iniciar la Práctica 2 se identificó esta limitante (útil para análisis futuros como comparaciones por tipo o pruebas ANOVA), por lo que se eliminó dicho filtro y se volvió a ejecutar la extracción con la misma metodología de muestreo. El dataset actualizado incluye 10 tipos distintos de canción (Original, Cover, Remix, Remaster, Instrumental, entre otros).
+**Ajuste posterior a la extracción de datos:** el script de extracción original incluía el parámetro `songTypes: "Original"` en las llamadas a la API, por lo que el primer dataset entregado contenía únicamente canciones de tipo Original, sin variabilidad en esa columna. Al iniciar la Práctica 2 se identificó esta limitante (útil para análisis futuros como comparaciones por tipo o pruebas ANOVA), por lo que se eliminó dicho filtro y se volvió a ejecutar la extracción con la misma metodología de muestreo. El dataset actualizado incluye 10 tipos distintos de canción (Original, Cover, Remix, Remaster, Instrumental, entre otros).
+
+**Limpieza y ajustes al script de extracción:** se agregó `Practica 1/limpieza_datos.py`, que genera `data/processed/vocadb_limpio.csv` con las correcciones descritas en `Practica 1/README.md`. Al script de extracción se le agregó una semilla aleatoria (`random.seed(42)`) y ahora guarda directo en `data/raw/`.
 
 ## Avances
-- [x] Práctica 1: Limpieza de Datos
-- [X] Práctica 2: Estadística descriptiva, diagrama de entidades y relaciones, métricas agrupadas por año
+- [x] Práctica 1: Selección y limpieza de datos
+- [x] Práctica 2: Estadística descriptiva, diagrama de entidades y relaciones, métricas agrupadas por año
+- [x] Práctica 3: Visualización de datos
+- [x] Práctica 4: Pruebas estadísticas
+- [x] Práctica 5: Modelos lineales y correlación
+- [x] Práctica 6: Clasificación (KNN)
+- [x] Práctica 7: Clustering (K-Means)
+- [x] Práctica 8: Pronóstico (series de tiempo)
+- [x] Práctica 9: Análisis de texto
+- [ ] PIA: Video de reporte final
+
+## Hallazgos principales
+- **Popularidad:** el % de canciones con al menos 1 favorito subió hasta un pico en 2017 (39 %) y luego bajó (12-17 % en 2023-2025). La diferencia entre etapas es estadísticamente significativa (P3, P4, P5).
+- **Diversidad:** Hatsune Miku pasó de ser la voz del 93 % de las canciones en 2007 al 18 % en 2025, mientras que las voces distintas por año pasaron de 6 a 154 (P3, P9).
+- **Popularidad y rating:** en VocaDB, `ratingScore = 3 × favoritos + 2 × likes` (se cumple en el 99.9 % de las canciones) (P5).
+- **Perfiles:** K-Means encontró un grupo de canciones populares (7 %, 79 % originales, año mediano 2015) frente a grupos con poca interacción (P7).
+- **Clasificación:** KNN distingue Original de Cover con una exactitud balanceada de 0.63; las palabras del título podrían mejorarlo (P6, P9).
 
 ## Autor
 Christian Alejandro García Sánchez
